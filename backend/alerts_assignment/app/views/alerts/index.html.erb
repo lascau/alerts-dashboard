@@ -1,0 +1,6 @@
+<div data-controller='alerts'>
+  <p>9999</p>
+  <% turbo_frame_tag @turbo_frame_id do %> 
+    <p data-home-target="counter"><%= @alert_count %></p>
+  <% end %>
+</div>
