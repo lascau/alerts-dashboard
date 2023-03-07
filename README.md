@@ -3,7 +3,7 @@ OS: Ubuntu 22.04 \
 Node 19.7.0 \
 Ruby 3.2 \
 Rails 7.0.4.2 \
-PostgreSQL 14.7
+PostgreSQL 14.7 \
 React 18.2
 
 Database \
@@ -13,7 +13,7 @@ rails db:seed (run this for testing if insertion in db is working)
 
 Backend \
 cd backend/alerts_assignment \
-Install all dependencies: bundle install
+Install all dependencies: bundle install \
 Start rails server on port 3000: rails s -p 3000
 
 Frontend \
@@ -51,11 +51,13 @@ Done:
 - added minimal ui navigation bar and pages for register, sign_in, alerts, home-page
 - authentication/authorization mechanism with devise, devise_token_auth gems and stored them in localStorage
 - short polling - fetch alerts endpoint for new alerts every 1 sec in loop(idea: turn this off when user not authorized or after a certain period the api is not consumed?)
-- cors with rack-cors gem, allowing only GET and POST requests on resources 
+- cors with rack-cors gem, allowing only GET and POST requests on resources \
+
 To do:
 - loading spinner / message before fetching
 - when sign in, add a message if it fails and if not redirect to alerts page
 - message on alert page when not authorized to access the resource
 - pagination
+
 
 
