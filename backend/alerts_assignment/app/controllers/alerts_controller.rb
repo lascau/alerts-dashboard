@@ -1,5 +1,5 @@
 class AlertsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
 
   def index
     @alerts = Alert.order(created_at: :desc)
@@ -7,7 +7,6 @@ class AlertsController < ApplicationController
   end
 
   def create
-    pp '!!!!!1', alert_params[:tags]
     if alert_params[:type_of] != 'portal_opened' && alert_params[:type_of] != 'portal_closed'
       render json: { message: 'Type is not supported!'}, status: :bad_request 
       return

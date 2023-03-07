@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :alerts
+  mount_devise_token_auth_for 'User', at: 'auth'
+  resources :alerts, only: [:create, :index]
+  root to: "alerts#index"
 end

@@ -1,15 +1,23 @@
-import './App.css';
-import Alerts from "./components/alerts/alerts"
+import "./App.css";
+import Alerts from "./components/alerts/alerts";
+import SignUp from "./components/sign_up/sign_up";
+import Login from "./components/login/login";
+import HomePage from "./components/home_page/homePage";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/navbar/navbar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="text-3xl font-bold underline">
-        Alerts
-      </header>
-      <Alerts />
-    </div>
-  );
-}
+const App = () => {
+	return (
+		<>
+			<Navbar />
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/alerts" element={<Alerts />} />
+				<Route path="/register" element={<SignUp />} />
+				<Route path="/sign_in" element={<Login />} />
+			</Routes>
+		</>
+	);
+};
 
 export default App;
