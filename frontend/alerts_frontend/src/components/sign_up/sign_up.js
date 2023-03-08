@@ -11,7 +11,21 @@ const SignUp = () => {
 				password_confirmation:
 					document.getElementById("sign_up_password").value,
 			}),
-		});
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data["status"] === "error") {
+					document.getElementById("email_register_errors").innerHTML =
+						data["errors"]["email"]
+							? "Email is " + data["errors"]["email"].join(",")
+							: "";
+					document.getElementById(
+						"password_register_errors"
+					).innerHTML = data["errors"]["password"]
+						? "Password " + data["errors"]["password"].join(",")
+						: "";
+				}
+			});
 	};
 
 	return (
@@ -30,6 +44,14 @@ const SignUp = () => {
 					Sign up
 				</button>
 			</div>
+			<div
+				className="flex justify-center"
+				id="email_register_errors"
+			></div>
+			<div
+				className="flex justify-center"
+				id="password_register_errors"
+			></div>
 		</form>
 	);
 };
