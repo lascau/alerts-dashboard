@@ -17,7 +17,7 @@ const SignUp = () => {
 				if (data["status"] === "error") {
 					document.getElementById("email_register_errors").innerHTML =
 						data["errors"]["email"]
-							? "Email is " + data["errors"]["email"].join(",")
+							? "Email " + data["errors"]["email"].join(",")
 							: "";
 					document.getElementById(
 						"password_register_errors"
