@@ -1,6 +1,34 @@
 import React from "react";
 
 const SignUp = () => {
+	const setRegistrationCompleted = (data) => {
+		document.getElementById("email_register_errors").innerHTML = "";
+		document.getElementById("password_register_errors").innerHTML = "";
+		document.getElementById("registration_success").innerHTML =
+			"Registration completed";
+	};
+
+	const setRegistrationErrors = (data) => {
+		document.getElementById("email_register_errors").innerHTML = data[
+			"errors"
+		]["email"]
+			? "Email " + data["errors"]["email"].join(",")
+			: "";
+		document.getElementById("password_register_errors").innerHTML = data[
+			"errors"
+		]["password"]
+			? "Password " + data["errors"]["password"].join(",")
+			: "";
+	};
+
+	const checkRegistrationStatus = (data) => {
+		if (data["status"] === "error") {
+			setRegistrationErrors(data);
+		} else {
+			setRegistrationCompleted(data);
+		}
+	};
+
 	const signUp = () => {
 		fetch("http://localhost:3000/auth", {
 			method: "POST",
@@ -13,19 +41,7 @@ const SignUp = () => {
 			}),
 		})
 			.then((response) => response.json())
-			.then((data) => {
-				if (data["status"] === "error") {
-					document.getElementById("email_register_errors").innerHTML =
-						data["errors"]["email"]
-							? "Email " + data["errors"]["email"].join(",")
-							: "";
-					document.getElementById(
-						"password_register_errors"
-					).innerHTML = data["errors"]["password"]
-						? "Password " + data["errors"]["password"].join(",")
-						: "";
-				}
-			});
+			.then((data) => checkRegistrationStatus(data));
 	};
 
 	return (
@@ -44,6 +60,10 @@ const SignUp = () => {
 					Sign up
 				</button>
 			</div>
+			<div
+				className="flex justify-center"
+				id="registration_success"
+			></div>
 			<div
 				className="flex justify-center"
 				id="email_register_errors"
