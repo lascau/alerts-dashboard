@@ -45,8 +45,6 @@ Improvments:
 - unit tests/specs
 - improve ui(material_ui, chackra_ui)
 
-Video demo(no sound):
-
 Update 1 \
 Done:
 - added minimal ui navigation bar and pages for register, sign_in, alerts, home-page
@@ -55,10 +53,18 @@ Done:
 - cors with rack-cors gem, allowing only GET and POST requests on resources \
 
 To do:
-- loading spinner / message before fetching
-- when sign in, add a message if it fails and if not redirect to alerts page
-- message on alert page when not authorized to access the resource
+- <s>loading spinner / message before fetching</s>
+- <s>when sign in, add a message if it fails and if not redirect to alerts page</s>
+- <s>message on alert page when not authorized to access the resource</s>
 - pagination
+
+Video demo(no sound):
+
+
+
+
+
+https://user-images.githubusercontent.com/32646125/223755562-07fb7836-146f-4ffb-97f0-b5cd520fb617.mp4
 
 
 
