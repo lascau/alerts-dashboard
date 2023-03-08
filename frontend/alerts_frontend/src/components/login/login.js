@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+	let isLoggedin = false;
 	let navigate = useNavigate();
 	const navigateToAlerts = () => navigate("/alerts");
 
@@ -15,6 +16,7 @@ const Login = () => {
 			}),
 		})
 			.then((response) => {
+				if (response.status == 200) isLoggedin = true;
 				for (let pair of response.headers) {
 					if (
 						pair[0] === "access-token" ||
@@ -55,7 +57,7 @@ const Login = () => {
 					type="button"
 					onClick={async () => {
 						await logIn();
-						navigateToAlerts();
+						if (isLoggedin) navigateToAlerts();
 					}}
 				>
 					Sign in
