@@ -1,9 +1,12 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-	const logIn = () => {
-		fetch("http://localhost:3000/auth/sign_in", {
+	let navigate = useNavigate();
+	const navigateToAlerts = () => navigate("/alerts");
+
+	const logIn = async () => {
+		await fetch("http://localhost:3000/auth/sign_in", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
@@ -25,7 +28,7 @@ const Login = () => {
 				return response.json();
 			})
 			.then((data) => {
-				if (data.success == false) {
+				if (data.success === false) {
 					document.getElementById(
 						"error_invalid_credentials"
 					).innerHTML = data["errors"][0];
@@ -36,13 +39,8 @@ const Login = () => {
 			});
 	};
 
-	const handleSubmit = () => {
-		//const navigate = useNavigate();
-		// navigate("/alerts");
-	};
-
 	return (
-		<form onSubmit={handleSubmit}>
+		<form>
 			<div className="flex justify-center mb-4">Login page</div>
 			<label className="flex gap-3 justify-center flex-row">
 				<p>Email</p>
@@ -53,7 +51,13 @@ const Login = () => {
 				<input type="password" id="login_password" />
 			</label>
 			<div className="flex justify-center">
-				<button type="button" onClick={logIn}>
+				<button
+					type="button"
+					onClick={async () => {
+						await logIn();
+						navigateToAlerts();
+					}}
+				>
 					Sign in
 				</button>
 			</div>
