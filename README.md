@@ -18,6 +18,7 @@ Start rails server on port 3000: rails s -p 3000
 
 Frontend \
 cd frontend/alerts_frontend/ \
+Install all dependencies: npm install \
 Start react server on port 3001: npm start \
 Select port 3001
 
